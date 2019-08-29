@@ -18,5 +18,10 @@ var MessagesView = {
       $('#chats').append(html);
     };
     Parse.readAll(showMessage);
+  },
+  renderMessage: function(message) {
+    var html = '';
+    html += MessageView.renderMessage(message);
+    $('#chats').append(html);
   }
 };
