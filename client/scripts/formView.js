@@ -1,9 +1,9 @@
 var FormView = {
 
   $form: $('form'),
-
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
+    this.render();
   },
 
   handleSubmit: function(event) {
@@ -17,7 +17,8 @@ var FormView = {
     var text = event.target[0].value;
     var message = {
       username: username,
-      text: text
+      text: text,
+      roomname: Rooms.currentRoom()
     };
     Parse.create(message);
   },
@@ -25,6 +26,32 @@ var FormView = {
   setStatus: function(active) {
     var status = active ? 'true' : null;
     FormView.$form.find('input[type=submit]').attr('disabled', status);
-  }
+  },
+
+  render: function() {
+    var showRooms = function (data) {
+      var html = '';
+      var roomOption = _.template(`<option value="<%= roomname %>"><%= roomname %></option>`);
+      for (var i = 0; i < data.results.length; i++) {
+        if (data.results[i].hasOwnProperty('roomname')) {
+          html += roomOption(data.results[i]);
+        }
+      }
+      $('#rooms select').append(html).
+        ready(function() {
+          var found = {};
+          $('option').each(function() {
+            var $this = $(this);
+            if (found[$this.attr('value')]) {
+              $this.remove();
+            } else {
+              found[$this.attr('value')] = true;
+            }
+          });
+        });
+    };
+
+    Parse.readAll(showRooms);
+  },
 
 };
