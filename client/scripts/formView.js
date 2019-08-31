@@ -20,7 +20,10 @@ var FormView = {
       text: text,
       roomname: Rooms.currentRoom()
     };
-    Parse.create(message);
+    Parse.create(message)
+    Parse.create.bind('ajaxComplete', function () {
+      // this works but is hacky?
+    });
   },
 
   setStatus: function(active) {

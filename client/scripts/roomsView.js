@@ -9,6 +9,7 @@ var RoomsView = {
     $('#rooms').on('click', 'button', function() {
       Rooms.add();
     });
+    Rooms.currentRoom();
   },
 
   renderRoom: function(roomname) {
