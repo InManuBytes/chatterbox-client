@@ -15,12 +15,7 @@ var FormView = {
       text: text,
       roomname: Rooms.currentRoom()
     };
-    Parse.create(message, () => {
-      Parse.readAll((data) => {
-        MessagesView.$chats.children().hide();
-        MessagesView.render(data, Rooms.currentRoom());
-      });
-    });
+    Parse.create(message, App.refresh);
   },
 
   setStatus: function(active) {

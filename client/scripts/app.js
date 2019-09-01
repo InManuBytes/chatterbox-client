@@ -14,6 +14,7 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
+    setInterval(App.refreshMessages, 1000);
   },
 
   fetch: function(callback = ()=>{}) {
@@ -28,6 +29,13 @@ var App = {
       });
       MessagesView.render(data, Rooms.currentRoom());
       RoomsView.render(data);
+    });
+  },
+
+  refreshMessages: function() {
+    Parse.readAll((data) => {
+      MessagesView.$chats.children().hide();
+      MessagesView.render(data, Rooms.currentRoom());
     });
   },
 

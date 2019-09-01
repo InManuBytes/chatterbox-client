@@ -10,7 +10,7 @@ var Parse = {
       data: JSON.stringify(message),
       contentType: 'application/json',
       success: successCB || function (data) {
-        conole.log('chatterbox: Message sent', data);
+        console.log('chatterbox: Message sent', data);
       },
       error: errorCB || function (data) {
         console.error('chatterbox: Failed to send message', data);
