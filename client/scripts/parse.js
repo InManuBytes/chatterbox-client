@@ -11,9 +11,6 @@ var Parse = {
       contentType: 'application/json',
       success: successCB || function (data) {
         console.log('chatterbox: Message sent');
-        // why can't we just run a function here
-        // and use one of our render methods
-        // or another function that adds our new message?
       },
       error: errorCB || function (data) {
         console.error('chatterbox: Failed to send message', data);

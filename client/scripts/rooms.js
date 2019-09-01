@@ -6,10 +6,6 @@ var Rooms = {
   },
 
   currentRoom: function () {
-    // $("#rooms select").change(function(){
-    //     var selectedRoom = $(this).children("option:selected").val();
-
-    // })
     return $('#rooms select').children('option:selected').val();
   }
 };

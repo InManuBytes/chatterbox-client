@@ -14,15 +14,20 @@ var App = {
     // Fetch initial batch of messages
     App.startSpinner();
     App.fetch(App.stopSpinner);
-
   },
 
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the response from the server request:
-      console.log('DATA:', data.results);
-
+      console.log('DATA:', data);
       callback();
+      $('#rooms select').change(function() {
+        var selectedRoom = $(this).children('option:selected').val();
+        MessagesView.$chats.children().hide();
+        MessagesView.render(data, selectedRoom);
+      });
+      MessagesView.render(data, Rooms.currentRoom());
+      RoomsView.render(data);
     });
   },
 
