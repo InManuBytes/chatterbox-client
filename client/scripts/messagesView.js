@@ -22,6 +22,10 @@ var MessagesView = {
   },
 
   renderMessage: function(message) {
+    var sanitizedText = Messages.escapeHtml(message.text);
+    var sanitizedUsername = Messages.escapeHtml(message.username);
+    message.text = sanitizedText;
+    message.username = sanitizedUsername;
     var html = '';
     html += MessageView.render(message);
     $('#chats').append(html);

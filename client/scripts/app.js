@@ -36,6 +36,9 @@ var App = {
     Parse.readAll((data) => {
       MessagesView.$chats.children().hide();
       MessagesView.render(data, Rooms.currentRoom());
+      Friends.friendsList.forEach( (friend) => {
+        Friends.render(friend);
+      });
     });
   },
 

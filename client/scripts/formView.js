@@ -18,6 +18,8 @@ var FormView = {
     Parse.create(message, App.refresh);
   },
 
+  // how can we get the value of the input to go away after submitting?
+
   setStatus: function(active) {
     var status = active ? 'true' : null;
     FormView.$form.find('input[type=submit]').attr('disabled', status);
