@@ -2,9 +2,7 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-    $('#chats').on('click', '.username', function(event) {
-      Friends.toggleStatus();
-    });
+    Friends.toggleStatus();
   },
 
   render: function(data, room) {
